@@ -5,12 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { login } from "../../services/actions/user";
 
-import cn from './Login.module.css';
+import logo from '../../images/form-logo.svg';
 
-export default function Login(props) {
-
-  const location = window.location.hostname;
-  
+export default function Login() {
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(store => store.user.isLoggedIn);
@@ -19,7 +16,7 @@ export default function Login(props) {
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const org = location === 'localhost' ? 'stankotsep' : location.split('.')[0];
+  const org = 'utermo';
 
   function handleEmailChange(evt) {
     setUserName(evt.target.value);
@@ -36,8 +33,8 @@ export default function Login(props) {
   
   return (
     <form className={`form form_hidden ${!isLoggedIn && 'form_block' }`} onSubmit={handleSubmit}>
-      <h2 className="form__heading">Вход</h2>
-      <p className="my-4">Организация: {org}</p>
+      <img src={logo} className="w-48 block mx-auto my-20" alt="" />
+     
       <input
         className="form__input"
         onChange={handleEmailChange}

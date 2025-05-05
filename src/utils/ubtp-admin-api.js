@@ -1,5 +1,4 @@
-import { NoteAlt } from "@mui/icons-material";
-import { BASE_URL, CLIENTS_URL, LOGIN_URL, LOGOUT_URL, ORDERS_URL, USER_URL } from "./constants";
+import { BASE_URL, LOGIN_URL, LOGOUT_URL, USER_URL } from "./constants";
 
 function checkResponseIsOk(res) {
     if(res.ok) {
@@ -54,6 +53,15 @@ export const getUserInfoRequest = () => {
     });
 }
 
+
+/* СХЕМА */
+
+export const getSchemesAdminRequest = () => {
+    return fetch(`${BASE_URL}/admin/schemes`)
+        .then((res)=> {
+            return checkResponseIsOk(res);
+        })
+}
 
 /* СПЕЦИФИКАЦИЯ */
 export const addSpecificattionRowRequest = (idScheme, idSort, nameTemplate, itemCategoryId) => {

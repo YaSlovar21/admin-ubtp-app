@@ -1,4 +1,4 @@
-import { getUserInfoRequest, loginRequest, logoutRequest } from "../../utils/hexie-api";
+import { getUserInfoRequest, loginRequest, logoutRequest } from "../../utils/ubtp-admin-api";
 
 export const SET_USER = 'SET_USER';
 export const SET_USER_LOGOUT= 'SET_USER_LOGOUT';
