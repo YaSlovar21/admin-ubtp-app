@@ -63,6 +63,25 @@ export const getSchemesAdminRequest = () => {
         })
 }
 
+export const postSchemeRequest = (svgText, type, comment) => {
+    const body = JSON.stringify({
+        svgText,
+        type,
+        comment
+    });
+    return fetch(`${BASE_URL}/admin/schemes`, {
+        method: 'POST',
+        credentials: 'include',
+        body: body,
+        headers: {
+            "Authorization": "Bearer 234",
+            'Content-Type': 'application/json',
+        },
+        }).then((res)=> {
+            return checkResponseIsOk(res);
+        })
+}
+
 /* СПЕЦИФИКАЦИЯ */
 export const addSpecificattionRowRequest = (idScheme, idSort, nameTemplate, itemCategoryId) => {
     return fetch(`${BASE_URL}/specifications`, {
