@@ -162,7 +162,7 @@ function renderNode(node) {
 }
 
 const styles = StyleSheet.create({
-  page: { fontFamily: 'GOST_type_A', letterSpacing: 2, display: 'flex', flexDirection: 'column', alignItems:'flex-start'},
+  page: { fontFamily: 'GOST_type_A', letterSpacing: 2, display: 'flex', paddingLeft:20, flexDirection: 'column', alignItems:'flex-start'},
 });
 
 function SchemeSvgReal2025({nodes}) {
@@ -171,7 +171,8 @@ function SchemeSvgReal2025({nodes}) {
                 <PDFViewer className='w-full h-screen'>
                     <Document>
                         <Page size="A3"  style={styles.page}> {/*orientation='landscape'*/}
-                            {nodes.map(node => renderNode(node))}   
+                            {/*nodes.map(node => memo(renderNode(node)))*/}   
+                            {renderNode(nodes[0])}
                         </Page>
                     </Document>
                 </PDFViewer>   

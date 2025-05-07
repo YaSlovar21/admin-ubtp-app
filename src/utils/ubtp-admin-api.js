@@ -1,7 +1,8 @@
 import { BASE_URL, LOGIN_URL, LOGOUT_URL, USER_URL } from "./constants";
 
 function checkResponseIsOk(res) {
-    if(res.ok) {
+    console.log(res);
+    if(res.ok || res.status === 502) {
         return res.json()
     } else {
         return Promise.reject(`Ошибка: ${res.status}`);
@@ -62,6 +63,18 @@ export const getSchemesAdminRequest = () => {
             return checkResponseIsOk(res);
         })
 }
+export const getSpecificationByIdSchemeRequest = (idScheme) => {
+    return fetch(`${BASE_URL}/admin/specifications/${idScheme}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            "Authorization": "Bearer 234",
+            'Content-Type': 'application/json;charset=utf-8',
+        },
+        }).then((res)=> {
+            return checkResponseIsOk(res);
+        })
+} 
 
 export const postSchemeRequest = (svgText, type, comment) => {
     const body = JSON.stringify({
@@ -83,15 +96,16 @@ export const postSchemeRequest = (svgText, type, comment) => {
 }
 
 /* СПЕЦИФИКАЦИЯ */
-export const addSpecificattionRowRequest = (idScheme, idSort, nameTemplate, itemCategoryId) => {
-    return fetch(`${BASE_URL}/specifications`, {
+export const addSpecificattionRowRequest = (idScheme, idSort, nameTemplate, quantity/*, itemCategoryId*/) => {
+    return fetch(`${BASE_URL}/admin/specifications`, {
+        method: 'POST',
         credentials: 'include',
         body: JSON.stringify({
             idScheme,
             idSort, 
             nameTemplate, 
             quantity, 
-            itemCategoryId 
+            //itemCategoryId 
         }),
         headers: {
             // Добавляем необходимые заголовки

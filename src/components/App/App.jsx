@@ -12,6 +12,7 @@ import { getUserData } from '../../services/actions/user';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import AdminSchemes from '../_pages/AdminSchemes/AdminSchemes';
+import AdminSpecificationsPage from '../../pages/AdminSpecificationsPage';
 
 function App() {
 
@@ -22,14 +23,15 @@ function App() {
   }, [] );
 
   return (
-    <>
+    <div className="max-w-[1900px] mx-auto">
       <Header />
       <Routes>
         <Route path="/" element={<ProtectedRouteWithAuth element={<Home />} />} />
         <Route path="/login" element={<ProtectedRouteFromAuth element={<Login/>}/> } />
         <Route path="/admin/schemes" element={<ProtectedRouteWithAuth element={<AdminSchemes />}/> } />
+        <Route path="/admin/schemes/:idScheme" element={<ProtectedRouteWithAuth element={<AdminSpecificationsPage />}/> } />
       </Routes>
-    </>
+    </div>
   )
 }
 
